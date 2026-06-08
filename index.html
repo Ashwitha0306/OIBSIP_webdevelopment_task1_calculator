@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Calculator Pro</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- Floating BG Shapes -->
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">∑</div>
+        <div class="logo-text">
+          <span class="app-name">Smart Calculator Pro</span>
+          <span class="app-sub">Fast • Accurate • Modern</span>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="toggle-icon" id="themeIcon">☀</span>
+        <span class="toggle-label" id="themeLabel">Light Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="math-icons" aria-hidden="true">
+        <span class="mi mi-1">π</span>
+        <span class="mi mi-2">∞</span>
+        <span class="mi mi-3">√</span>
+        <span class="mi mi-4">∫</span>
+        <span class="mi mi-5">Σ</span>
+        <span class="mi mi-6">±</span>
+      </div>
+      <h1 class="hero-title">Calculate Anything<br /><em>Instantly</em></h1>
+      <p class="hero-desc">A modern calculator designed for quick and accurate mathematical operations, with smart tools
+        and full history tracking.</p>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main class="dashboard">
+
+    <!-- Calculator Card -->
+    <section class="calc-card glass" id="calculator">
+      <div class="display">
+        <div class="display-prev" id="displayPrev"></div>
+        <div class="display-current" id="displayCurrent">0</div>
+      </div>
+      <div class="btn-grid">
+        <!-- Row 1 -->
+        <button class="btn btn-fn" data-action="clear">C</button>
+        <button class="btn btn-fn" data-action="sign">+/-</button>
+        <button class="btn btn-fn" data-action="percent">%</button>
+        <button class="btn btn-op" data-action="operator" data-value="÷">÷</button>
+        <!-- Row 2 -->
+        <button class="btn btn-num" data-action="number" data-value="7">7</button>
+        <button class="btn btn-num" data-action="number" data-value="8">8</button>
+        <button class="btn btn-num" data-action="number" data-value="9">9</button>
+        <button class="btn btn-op" data-action="operator" data-value="×">×</button>
+        <!-- Row 3 -->
+        <button class="btn btn-num" data-action="number" data-value="4">4</button>
+        <button class="btn btn-num" data-action="number" data-value="5">5</button>
+        <button class="btn btn-num" data-action="number" data-value="6">6</button>
+        <button class="btn btn-op" data-action="operator" data-value="-">−</button>
+        <!-- Row 4 -->
+        <button class="btn btn-num" data-action="number" data-value="1">1</button>
+        <button class="btn btn-num" data-action="number" data-value="2">2</button>
+        <button class="btn btn-num" data-action="number" data-value="3">3</button>
+        <button class="btn btn-op" data-action="operator" data-value="+">+</button>
+        <!-- Row 5 -->
+        <button class="btn btn-num btn-zero" data-action="number" data-value="0">0</button>
+        <button class="btn btn-num" data-action="decimal">.</button>
+        <button class="btn btn-num" data-action="backspace">⌫</button>
+        <button class="btn btn-eq" data-action="equals">=</button>
+      </div>
+    </section>
+
+    <!-- History Panel -->
+    <section class="history-card glass" id="historySection">
+      <div class="panel-header">
+        <h2 class="panel-title">History</h2>
+        <button class="clear-btn" id="clearHistory">Clear</button>
+      </div>
+      <ul class="history-list" id="historyList">
+        <li class="history-empty">No calculations yet</li>
+      </ul>
+    </section>
+
+    <!-- Quick Tools -->
+    <section class="tools-section">
+      <h2 class="section-title">Quick Tools</h2>
+      <div class="tools-grid">
+
+        <!-- Percentage Tool -->
+        <div class="tool-card glass">
+          <div class="tool-icon">%</div>
+          <h3 class="tool-name">Percentage Calculator</h3>
+          <p class="tool-desc">Find X% of any number</p>
+          <div class="tool-inputs">
+            <input type="number" id="pctValue" placeholder="Value (e.g. 500)" class="tool-input" />
+            <input type="number" id="pctPct" placeholder="Percent (e.g. 20)" class="tool-input" />
+            <button class="tool-btn" id="calcPct">Calculate</button>
+          </div>
+          <div class="tool-result" id="pctResult"></div>
+        </div>
+
+        <!-- Discount Tool -->
+        <div class="tool-card glass">
+          <div class="tool-icon">🏷</div>
+          <h3 class="tool-name">Discount Calculator</h3>
+          <p class="tool-desc">Find final price after discount</p>
+          <div class="tool-inputs">
+            <input type="number" id="discPrice" placeholder="Original Price (₹)" class="tool-input" />
+            <input type="number" id="discPct" placeholder="Discount (%)" class="tool-input" />
+            <button class="tool-btn" id="calcDisc">Calculate</button>
+          </div>
+          <div class="tool-result" id="discResult"></div>
+        </div>
+
+        <!-- GST Tool -->
+        <div class="tool-card glass">
+          <div class="tool-icon">₹</div>
+          <h3 class="tool-name">GST Calculator</h3>
+          <p class="tool-desc">Add or remove GST from price</p>
+          <div class="tool-inputs">
+            <input type="number" id="gstAmount" placeholder="Amount (₹)" class="tool-input" />
+            <input type="number" id="gstRate" placeholder="GST Rate (e.g. 18)" class="tool-input" />
+            <div class="gst-btns">
+              <button class="tool-btn" id="addGst">Add GST</button>
+              <button class="tool-btn btn-outline" id="removeGst">Remove GST</button>
+            </div>
+          </div>
+          <div class="tool-result" id="gstResult"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Math Facts -->
+    <section class="facts-section">
+      <h2 class="section-title">Math Facts</h2>
+      <div class="facts-grid">
+        <div class="fact-card glass">
+          <div class="fact-num">0</div>
+          <p>Zero is the only number that cannot be represented by Roman numerals.</p>
+        </div>
+        <div class="fact-card glass">
+          <div class="fact-num">π</div>
+          <p>Pi (π) is an irrational number — its decimal never ends or repeats.</p>
+        </div>
+        <div class="fact-card glass">
+          <div class="fact-num">φ</div>
+          <p>The Fibonacci sequence appears throughout nature — in flowers, shells, and galaxies.</p>
+        </div>
+        <div class="fact-card glass">
+          <div class="fact-num">∞</div>
+          <p>Prime numbers have exactly two factors: 1 and themselves. They are infinite.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">Smart Calculator Pro</span>
+      <!-- <div class="social-links"> -->
+      <!-- <a href="#" aria-label="GitHub">⌥</a> -->
+      <!-- <a href="#" aria-label="Twitter">✦</a> -->
+      <!-- <a href="#" aria-label="LinkedIn">◈</a> -->
+      <!-- </div> -->
+      <!-- <span class="footer-credit">Crafted with precision &amp; care</span> -->
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
